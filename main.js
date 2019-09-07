@@ -19,11 +19,13 @@ const {
 
 const users = require('./routes/api/users');
 
+const passport = require('passport');
+
 app.use('/public', express.static(__dirname + '/public'));
 
-app.get('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname + '/views/index.html'));
-});
+// app.get('/', (req, res, next) => {
+//     res.sendFile(path.join(__dirname + '/views/index.html'));
+// });
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -32,6 +34,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use('/api/users', users);
+
+app.use(passport.initialize());
+
+require('./config/passport')(passport);
 
 app.listen(port, hostName, (err) => {
     if (err) {

@@ -7,6 +7,7 @@ const dbs = 'node_app';
 module.exports = {
     mongoUrl: `mongodb://${hostName}:${port}/${dbs}`,
     options: {
-        useNewUrlParser:true
-    }
+        useNewUrlParser: true
+    },
+    secretOrKey: 'secret'
 }
